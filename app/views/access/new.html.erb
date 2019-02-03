@@ -1,0 +1,22 @@
+<div class="order_form">
+<% if flash[:alert] %>
+<p id="notice"><%= flash[:alert] %></p>
+<% end %>
+<%= form_tag do %>
+<div>
+	<strong>Login Page: </strong>
+	<div>
+		<%= label_tag :name, 'Name:' %>
+		<%= text_field_tag :name, params[:name] %>
+	</div>
+	<div align="left">
+		<%= label_tag :password, 'Password:' %>
+		<%= password_field_tag :password, params[:password] %>
+	</div>
+	<div align="left">
+		<%= submit_tag "Login" %>
+	</div>
+</div>
+<p> Credentials for Login: Username- admin, Password- admin </p>
+<% end %>
+</div>

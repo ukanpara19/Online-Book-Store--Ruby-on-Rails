@@ -1,0 +1,28 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h1>Product List</h1>
+<form>
+	<% if params[:search] %>
+		<input type="text" name="search" value='<%= params[:search]%>' placeholder="Search Product">
+	<% else %>
+		<input type="text" name="search" placeholder="Search Product">
+	<% end %>
+	<button type="Submit">Search</button>
+		<%= link_to 'Clear', shopper_path %>
+</form>
+
+<% @products.each do|product| %>
+	<tr>
+	<div class="entry <%= cycle('list_line_odd', 'list_line_even')%>">
+		<%= image_tag(product.image, size: "100x100") %>
+		<h3><%= product.name %></h3>
+		<h4><%= sanitize(product.description) %></h4>
+		<div class="price_line">
+			<span class="price"><%= number_to_currency(product.price) %></span>
+			<%= button_to 'Add to Cart', lineitems_path(product_id: product), class: 'add_to_cart', remote:true%>
+		</div>
+	</div>
+	</tr>
+<% end %>
